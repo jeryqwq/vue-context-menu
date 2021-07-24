@@ -1,0 +1,30 @@
+{
+  "name": "vue-context-menu",
+  "version": "1.0.0",
+  "description": "新手指引组件 ",
+  "main": "./dist/main.umd.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "node-sass": "6.0.1",
+    "sass-loader": "6.0.0",
+    "vue": "2.6.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "vue serve test/normal.vue",
+    "build": "vue build --target lib --name main './src/index.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "右键菜单",
+    "context-menu",
+    "菜单组件",
+    "vue",
+    "component"
+  ],
+  "homepage": "https://github.com/jeryqwq/vue-context-menu",
+  "author": "jeryqwq",
+  "license": "ISC"
+}
