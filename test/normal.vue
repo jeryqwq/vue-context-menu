@@ -17,7 +17,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$contextMenu)
+    console.log(this.$el.__vue__)
     // Vue.prototype.$contextMenu({
     //   target: this.$refs.test
     // })

@@ -30,9 +30,10 @@ class KeyCodeHelper {
     fn && fn(fnArgs)
   }
 }
-function keydownThrottle (key) {
+function keydownThrottle (key, fn) {
+  currentKeys.push(key)
+  fn(currentKeys)
   return new Promise(resolve => {
-    currentKeys.push(key)
     clearTimeout(timer)
     timer = setTimeout(() => {
       if (currentKeys.length) {
