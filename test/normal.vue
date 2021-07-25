@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import VueContextMenu from './../src/index.vue'
 export default {
   components: {VueContextMenu},
@@ -17,7 +16,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$el.__vue__)
     // Vue.prototype.$contextMenu({
     //   target: this.$refs.test
     // })
