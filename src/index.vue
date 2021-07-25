@@ -140,7 +140,9 @@ const compWrap = {
           methods: {
             forceUpdate () {
               this.$refs.contextMenu.forceUpdate()
-            }
+            },
+            addKeysFunc: this.$refs.contextMenu.addKeysFunc,
+            removeKeysFunc: this.$refs.contextMenu.removeKeysFunc
           }
         })
         document.body.appendChild(parent)
@@ -148,6 +150,8 @@ const compWrap = {
         instanceEl.add(_target)
         return {
           vm,
+          addKeysFunc: vm.addKeysFunc,
+          removeKeysFunc: vm.removeKeysFunc,
           forceUpdate () {
             vm.forceUpdate()
           },

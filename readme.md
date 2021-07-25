@@ -432,6 +432,11 @@ npm i vue-context-menu-comp
 | :------| ------: | :------: |:------: |:------: |
 | menuInfo |  菜单的主要信息展示  | Array | [] |  |
 
+### 实例参数 (ref绑定该组件调用, 适用于组件)
+| 参数名 | 描述 | 类型 | 默认值 | 其他|
+| addKeysFunc | 手动移除快捷键，用于异步数据或其他业务, 传入keys数组和函数回掉函数 |  func  | 
+| removeKeysFunc | 手动移除快捷键，用于异步数据或其他业务,传入keys数组即可 |  func  | 
+| forceUpdate | 当组件参数menuInfo更新时，可调用该方法强制刷新菜单视图，而不是等到菜单消失后重新打开才更新 |  func |
 
 ### 节点参数（menuInfo）
 | 参数 | 描述 | 类型 | 默认值 | 其他|
@@ -462,6 +467,10 @@ npm i vue-context-menu-comp
 | destroy |  手动销毁当前组件实例， 当绑定的节点不存在时可调用该方法手动解绑并销魂实例，可添加在生命周期的destory中  | func |
 | destroyAll | 手动销魂所有通过指令和$contextMenu注册的菜单组件实例，慎用 |  func  | 
 | triggerMenu | 手动显示隐藏切换函数， 传递一个boolean型进行显示隐藏 |  func  | 
+| addKeysFunc | 手动移除快捷键，用于异步数据或其他业务, 传入keys数组和函数回掉函数 |  func  | 
+| removeKeysFunc | 手动移除快捷键，用于异步数据或其他业务,传入keys数组即可 |  func  | 
+| triggerMenu | 手动显示隐藏切换函数， 传递一个boolean型进行显示隐藏 |  func  | 
+
 
 ### v-context-menu指令参数
 
