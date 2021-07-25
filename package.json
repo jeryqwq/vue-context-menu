@@ -1,6 +1,6 @@
 {
   "name": "vue-context-menu-comp",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "菜单组件 右键菜单 context-menu vue",
   "main": "./dist/main.umd.js",
   "directories": {
@@ -16,6 +16,7 @@
     "dev": "vue serve test/normal.vue",
     "build": "vue build --target lib --name main './src/index.vue'",
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "keywords": [
     "右键菜单",

@@ -8,32 +8,41 @@
 ::: demo
 ```vue
 <template>
-  <vl-context-menu>
+  <vue-context-menu>
     <h2 style="background: gray">默认效果展示， 鼠标右击此处试试弹出菜单</h2>
-  </vl-context-menu>
+  </vue-context-menu>
 </template>
 <script>
 </script>
 ```
 :::
-
+### 安装
+``` bash
+npm i vue-context-menu-comp
+```
 ### 基础用法
 目前支持三种常用的插件用法，以适配不同的业务场景
 
 #### 1.使用slot默认包裹在组件内的元素在鼠标右键单击时触发菜单展示
+##### 注册
+``` js
+  import Vue from 'vue'
+  import VueContextMenu from 'vue-context-menu-comp'
+  Vue.component('VueContextMenu', VueContextMenu) // 注册右键菜单指令和方法
+```
 ```vue
   <template>
-    <vl-context-menu>
+    <vue-context-menu>
       <h1>鼠标右击我会展示对应右键菜单</h1>
-    </vl-context-menu>
+    </vue-context-menu>
   </template>
 ```
 #### 2.使用vue指令v-context-menu
 ##### 注册
 ``` js
   import Vue from 'vue'
-  import { VlContextMenu } from 'ssa-components-next'
-  Vue.use(VlContextMenu.register) // 注册右键菜单指令和方法
+  import VueContextMenu from 'vue-context-menu-comp'
+  Vue.use(VueContextMenu.register) // 注册右键菜单指令和方法
 ```
 ##### 使用  
 ``` vue
@@ -66,9 +75,9 @@
 ```vue
 <template>
   <div>
-    <vl-context-menu>
+    <vue-context-menu>
       <h2 style="background: gray">渲染子元素</h2>
-    </vl-context-menu>
+    </vue-context-menu>
     <h2 style="background: gray" ref="contextMenu">通过$contextMenu绑定的右键菜单</h2>
     <h2 style="background: gray" v-context-menu="{ menuInfo }">指令注册的右键菜单</h2>
   </div>
@@ -106,9 +115,9 @@
 ::: demo
 ``` vue
 <template>
-  <vl-context-menu :menuInfo="menuInfo">
+  <vue-context-menu :menuInfo="menuInfo">
     <h2>效果展示， 鼠标右击此处试试弹出菜单</h2>
-  </vl-context-menu>
+  </vue-context-menu>
 </template>
 
 <script>
@@ -172,9 +181,9 @@
 ::: demo
 ``` vue
 <template>
-  <vl-context-menu :menuInfo="menuInfo" @clickFn="() => {}">
+  <vue-context-menu :menuInfo="menuInfo" @clickFn="() => {}">
     <h2>效果展示， 鼠标右击此处试试弹出菜单</h2>
-  </vl-context-menu>
+  </vue-context-menu>
 </template>
 
 <script>
@@ -243,9 +252,9 @@
 ::: demo
 ``` vue
 <template>
-  <vl-context-menu :menuInfo="menuInfo" @clickFn="() => {}">
+  <vue-context-menu :menuInfo="menuInfo" @clickFn="() => {}">
     <h2>效果展示， 鼠标右击此处试试弹出菜单</h2>
-  </vl-context-menu>
+  </vue-context-menu>
 </template>
 
 <script>
@@ -335,9 +344,9 @@
 ::: demo
 ``` vue
 <template>
-  <vl-context-menu :menuInfo="menuInfo" >
+  <vue-context-menu :menuInfo="menuInfo" >
     <h2>手速测试，打开右键开始闯关</h2>
-  </vl-context-menu>
+  </vue-context-menu>
 </template>
 
 <script>
