@@ -15,8 +15,14 @@ class KeyCodeHelper {
     const key = keycodes.join('+')
     this.keyCodeMapper[key] = cb
     this.keyCodeArgsMapper[key] = item
+    return this
   }
-
+  removeKeyCodeFunc = (keys) => {
+    keycodes = keycodes.sort()
+    const key = keycodes.join('+')
+    Reflect.deleteProperty(this.keyCodeArgsMapper, key)
+    return Reflect.deleteProperty(this.keyCodeMapper, key)
+  }
   clearnFn = () => {
     this.keyCodeMapper = {}
     this.keyCodeArgsMapper = {}

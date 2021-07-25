@@ -34,6 +34,7 @@ const compWrap = {
             name: 'menu1,带children',
             value: 'menu1',
             keys: ['Control', 'a', 'a'],
+            disabled: true,
             fn: function () {
               alert('触发fn执行')
               console.log('menu1 Click')
@@ -209,16 +210,23 @@ const compWrap = {
     }
   },
   methods: {
-    registerKeycodeFn (menus) { // 注册快捷键
+    registerKeycodeFn (menus, isDisabled) { // 注册快捷键
       for (let i = 0; i < menus.length; i++) {
         const item = menus[i]
+        const itemdis = (item.disabled || isDisabled)
         const fn = () => {
           item.fn && item.fn(item)
           this.$emit('clickFn', item.value, item)
         }
-        item.keys && this.keycodeHelper.registerKeyCodeFunction(new Array(...item.keys), fn, item)
-        item.children && item.children.length && this.registerKeycodeFn(item.children)
+        !itemdis && item.keys && this.keycodeHelper.registerKeyCodeFunction(new Array(...item.keys), fn, item)
+        item.children && item.children.length && this.registerKeycodeFn(item.children, item.disabled || itemdis)
       }
+    },
+    addKeysFunc(keys, cb) {
+      return this.keycodeHelper.registerKeyCodeFunction(new Array(...keys), cb, {})
+    },
+    removeKeysFunc (keys) {
+      return this.keycodeHelper.removeKeyCodeFunc(keys)
     },
     async keydownExecFunction (e) { // 300ms 适配多key组合快捷键（一般都是组合快捷键场景）,ctrl+ a + b，原生无法使用多key的情况
       if (!this.menuVDOM) return

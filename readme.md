@@ -442,7 +442,7 @@ npm i vue-context-menu-comp
 | [menuInfo].load | 当前菜单项children的加载函数，返回children对象 |  func => promise()/children  | undefined | 函数必须返回children格式的对象或者promise |
 | [menuInfo].fn | 节点单项的单击事件回调 |  func  | undefined |   |
 | [menuInfo].disabled | 是否禁用节点 |  bool  | false |  禁用后fn事件不触发且影响所有改节点的子节点为禁用 |
-| [menuInfo].keys | 节点事件触发的快捷键配置 |  array  | undefined | 于触发顺序无关， 默认收集500ms内按下的按键， 所以会延迟一会  |
+| [menuInfo].keys | 节点事件触发的快捷键配置 |  array  | undefined | 于触发顺序无关  |
 | [menuInfo].title | 节点单项的title说明属性 |  string  | ‘’ |  鼠标划过时触发 |
 | [menuInfo].children | 当前菜单项的子节点数组对象 |  array  | [] |   |
 
