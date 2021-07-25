@@ -1,4 +1,5 @@
 <script>
+ /* eslint-disable */
 import keyUtils from './util/keyCode'
 const { KeyCodeHelper, SHORT_KEY_NAMES, keydownThrottle } = keyUtils
 let instanceCollection = new WeakMap() // 所有节点对象和对应的右键菜单组件关系映射
@@ -87,6 +88,7 @@ const compWrap = {
           {
             value: 'menu4',
             name: '动态添加子节点',
+            disabled: true,
             title: '动态添加子节点可用于权限菜单或者复杂业务下操作， 用来过滤或者重新添加菜单子节点',
             load: function (item) {
               console.log(item, 'load ')
@@ -228,6 +230,7 @@ const compWrap = {
       console.log(keys)
     },
     treeNodeClickWrap (e, cb, item) {
+      if(item.disabled) return
       e && e.stopPropagation()
       this.$emit('clickFn', item.value, item)
       cb && cb(item)
@@ -267,26 +270,27 @@ const compWrap = {
         return <span class="keys-text">({ item.keys.map(i => SHORT_KEY_NAMES[i] || i.toUpperCase()).join(' + ') })</span>
       }
     },
-    genRenderMenuDom (menus, isSub) {
+    genRenderMenuDom (menus, parent, isDisabled) {
       if (!menus.length) {
         return null
       }
       const wrapStyleWrap = { position: 'fixed', left: this.position.x + 'px', top: this.position.y + 'px', zIndex: 9999 }
       const wrapStyleSub = { position: 'absolute', left: '100%', top: '0' }
-      return <ul class="menu-wrap" style={isSub ? wrapStyleSub : wrapStyleWrap}
-        onMouseleave={() => (!isSub && setTimeout(() => {
+      return <ul class="menu-wrap" style={parent ? wrapStyleSub : wrapStyleWrap}
+        onMouseleave={() => (!parent && setTimeout(() => {
           this.menuVDOM = null
-        }, 400))}
+        }, 200))}
       >
         {
-          menus.map((item) => <li title={item.title} onClick={(e) => this.treeNodeClickWrap(e, item.fn, item)}
+          menus.map((item) => <li title={item.title} onClick={(e) => !(item.disabled || isDisabled) && this.treeNodeClickWrap(e, item.fn, item)}
             onMouseenter={(e) => this.loadLazyChildren(e, item.load, item) }
+            class={{disable: item.disabled || isDisabled }}
           >
             {this.renderIcon(item)}
             {item.render ? item.render(this.$createElement, item) : item.name}
             { this.renderKeysText(item) }
             {this.isAsyncRenderLoaddingIcon(item)}
-            {item.children && item.children.length && this.genRenderMenuDom(item.children, true)}
+            {item.children && item.children.length && this.genRenderMenuDom(item.children, item, item.disabled || parent && parent.disabled || isDisabled)}
           </li>)
         }
       </ul>
@@ -344,6 +348,13 @@ export default compWrap
     position: relative;
     white-space: nowrap;
     color: #333;
+    &.disable{
+      cursor: not-allowed;
+      color: gray;
+      &:hover{
+        background: none;
+      }
+    }
     .keys-text{
       transform: scale(0.7);
       transform-origin: center;
